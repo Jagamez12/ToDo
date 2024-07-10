@@ -1,0 +1,11 @@
+{% extends "master.html" %}
+
+{% block title %} HomePage {% endblock %}
+
+{% block content %}
+    <form method="POST" class="form mx-3 mt-3">
+            {{formaTarea}}
+        <button type="submit" class="btn btn-primary mt-2">Enviar</button>
+        {% csrf_token %}
+    </form>
+{% endblock %}

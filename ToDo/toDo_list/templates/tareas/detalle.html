@@ -1,0 +1,36 @@
+{% extends "master.html" %}
+
+{% block title %} Detalle Tarea {% endblock %}
+
+{% block content %} 
+
+    <h2>{{tarea.titulo}}</h2>
+    <form method="POST" class="form">
+        {{pasosForm}}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        {% csrf_token %}
+    </form>
+    {% if sinPasos <= 0 %}
+        <h5>Oops, parece que esta tarea tiene ningun paso aun, ¿quieres agregar algunos?</h5>
+    {% else %}
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for paso in pasos %}
+                <tr>
+                    <td>{{paso.index}}</td>
+                    <td>{{paso.titulo}}</td>
+                    <td>{{paso.terminado}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
